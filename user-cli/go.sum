@@ -45,8 +45,8 @@ github.com/beorn7/perks v0.0.0-20180321164747-3a771d992973/go.mod h1:Dwedo/Wpr24
 github.com/beorn7/perks v1.0.0/go.mod h1:KWe93zE9D1o94FZ5RNwFwVgaQK1VOXiVxmqh+CedLV8=
 github.com/beorn7/perks v1.0.1 h1:VlbKKnNfV8bJzeqoa4cOKqO6bYr3WgKZxO8Z16+hsOM=
 github.com/beorn7/perks v1.0.1/go.mod h1:G2ZrVWU2WbWT9wwq4/hrbKbnv/1ERSJQ0ibhJ6rlkpw=
-github.com/bertshang/policy/user-service v0.0.0-20201231061619-64b26590efa0 h1:L8YfKbj/urDFoIGdwKaT0hCj19t4YC2kAZo9uXgH3/k=
-github.com/bertshang/policy/user-service v0.0.0-20201231061619-64b26590efa0/go.mod h1:pYoakd136iB9SbHb08fJsHCBx62NzNUi/jPax+TKX+Y=
+github.com/bertshang/policy/user-service v0.0.0-20201231080441-4be3d4e8ec23 h1:IESEcpww3+W2w/QZ4Bs04iJBn0TY/pI29CgIElkAhfc=
+github.com/bertshang/policy/user-service v0.0.0-20201231080441-4be3d4e8ec23/go.mod h1:pYoakd136iB9SbHb08fJsHCBx62NzNUi/jPax+TKX+Y=
 github.com/bitly/go-simplejson v0.5.0/go.mod h1:cXHtHw4XUPsvGaxgjIAn8PhEWG9NfngEKAMDJEczWVA=
 github.com/blang/semver v3.1.0+incompatible/go.mod h1:kRBLl5iJ+tD4TcOOxsy/0fnwebNt5EWlYSAyrTnjyyk=
 github.com/bmizerany/assert v0.0.0-20160611221934-b7ed37b82869/go.mod h1:Ekp36dRnpXw/yCqJaO+ZrUyxD+3VXMFFr56k5XYrpB4=
