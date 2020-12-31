@@ -33,7 +33,7 @@ func main() {
 
 	// 以下是 Micro 创建微服务流程
 	srv := micro.NewService(
-		micro.Name("policy.user.service"),
+		micro.Name("policy.service.user"),
 		micro.Version("latest"),  // 新增接口版本参数
 	)
 	srv.Init()

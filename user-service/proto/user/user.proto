@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package policy.user.service;
+package policy.service.user;
 
 service UserService {
     rpc Create(User) returns (Response) {}
