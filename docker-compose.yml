@@ -28,11 +28,25 @@ services:
       DB_NAME: "policy_user"
       DB_USER: "test"
       DB_PASSWORD: "test"
+    networks:
+      - microservice
 
   policy-user-cli:
     build: ./user-cli
     environment:
       MICRO_REGISTRY: "mdns"
+
+  policy-micro-api:
+    image: microhq/micro:latest
+    environment:
+      MICRO_REGISTRY: "mdns"
+    links:
+      - policy-user-service
+    ports:
+      - 8080:8080
+    command: api --handler=rpc --namespace=policy.service
+    networks:
+      - microservice
 
   policy-user-db:
     image: mysql:5.7
@@ -47,6 +61,12 @@ services:
       MYSQL_PASSWORD: "test"
       MYSQL_DATABASE: "policy_user"
       MYSQL_ROOT_PASSWORD: "root"
+    networks:
+      - microservice
 
 volumes:
   db_data: {}
+
+networks:
+  microservice:
+    external: true

@@ -3,6 +3,7 @@ package handler
 import (
 	pb "github.com/bertshang/policy/user-service/proto/user"
 	"github.com/bertshang/policy/user-service/repo"
+	"github.com/jinzhu/gorm"
 	"golang.org/x/crypto/bcrypt"
 	"golang.org/x/net/context"
 	"github.com/bertshang/policy/user-service/service"
@@ -16,8 +17,14 @@ type UserService struct {
 }
 
 func (srv *UserService) Get(ctx context.Context, req *pb.User, res *pb.Response) error {
-	user, err := srv.Repo.Get(req.Id)
-	if err != nil {
+	var user *pb.User
+	var err error
+	if req.Id != "" {
+		user, err = srv.Repo.Get(req.Id)
+	} else if req.Email != "" {
+		user, err = srv.Repo.GetByEmail(req.Email)
+	}
+	if err != nil && err != gorm.ErrRecordNotFound {
 		return err
 	}
 	res.User = user
@@ -73,7 +80,7 @@ func (srv *UserService) Auth(ctx context.Context, req *pb.User, res *pb.Token) e
 
 func (srv *UserService) ValidateToken(ctx context.Context, req *pb.Token, res *pb.Token) error {
 
-	// 校验用户亲求中的token信息是否有效
+	// 校验用户请求中的token信息是否有效
 	claims, err := srv.Token.Decode(req.Token)
 
 	if err != nil {
@@ -86,5 +93,24 @@ func (srv *UserService) ValidateToken(ctx context.Context, req *pb.Token, res *p
 
 	res.Valid = true
 
+	return nil
+}
+
+func (srv *UserService) Update(ctx context.Context, req *pb.User, res *pb.Response) error {
+	if req.Id == "" {
+		return errors.New("用户 ID 不能为空")
+	}
+	if req.Password != "" {
+		// 如果密码字段不为空的话对密码进行哈希加密
+		hashedPass, err := bcrypt.GenerateFromPassword([]byte(req.Password), bcrypt.DefaultCost)
+		if err != nil {
+			return err
+		}
+		req.Password = string(hashedPass)
+	}
+	if err := srv.Repo.Update(req); err != nil {
+		return err
+	}
+	res.User = req
 	return nil
 }
