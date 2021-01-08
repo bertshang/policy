@@ -18,12 +18,15 @@ services:
   policy-user-service:
     depends_on:
       - policy-user-db
+      - policy-nats
     build: ./user-service
     ports:
       - 9092:9091
     environment:
       MICRO_SERVER_ADDRESS: ":9091"
       MICRO_REGISTRY: "mdns"
+      MICRO_BROKER: "nats"
+      MICRO_BROKER_ADDRESS: "policy-nats:4222"
       DB_HOST: "policy-user-db:3306"
       DB_NAME: "policy_user"
       DB_USER: "test"
@@ -61,6 +64,14 @@ services:
       MYSQL_PASSWORD: "test"
       MYSQL_DATABASE: "policy_user"
       MYSQL_ROOT_PASSWORD: "root"
+    networks:
+      - microservice
+
+  policy-nats:
+    image: nats:latest
+    ports:
+      - 4222:4222
+    restart: always
     networks:
       - microservice
 
