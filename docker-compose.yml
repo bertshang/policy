@@ -4,17 +4,37 @@ version: '3.3'
 services:
   policy-demo-cli:
     build: ./demo-cli
+    depends_on:
+      - policy-demo-service
     environment:
-      MICRO_REGISTRY: "mdns"
+      MICRO_REGISTRY: "etcd"
+      MICRO_REGISTRY_ADDRESS: "etcd1:2379,etcd2:2379,etcd3:2379"
+      MICRO_TRACE_SERVER: "jaeger:6831"
+    networks:
+      - microservice
 
   policy-demo-service:
     build: ./demo-service
-    ports:
-      - 9091:9091
+    depends_on:
+      - etcd1
+      - etcd2
+      - etcd3
+      - jaeger
     environment:
       MICRO_SERVER_ADDRESS: ":9091"
-      MICRO_REGISTRY: "mdns"
-
+      MICRO_REGISTRY: "etcd"
+      MICRO_REGISTRY_ADDRESS: "etcd1:2379,etcd2:2379,etcd3:2379"
+      ENABLE_REMOTE_CONFIG: "false"
+      MICRO_TRACE_SERVER: "jaeger:6831"
+    networks:
+      - microservice
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+    ports:
+      - "6831:6831/udp"
+      - "16686:16686"
+    networks:
+      - microservice
   policy-user-service:
     depends_on:
       - policy-user-db
