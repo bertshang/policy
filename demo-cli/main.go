@@ -42,7 +42,7 @@ func main() {
 	ctx = opentracing.ContextWithSpan(ctx, span)
 	ctx = metadata.NewContext(ctx, md)
 	// 记录请求 && 响应 && 错误
-	req := &pb.DemoRequest{Name: "学院君"}
+	req := &pb.DemoRequest{Name: "bertshang"}
 	span.SetTag("req", req)
 	resp, err := client.SayHello(ctx, req)
 	if err != nil {

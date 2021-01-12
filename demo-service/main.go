@@ -6,7 +6,7 @@ import (
 	"github.com/micro/go-micro"
 	"github.com/micro/go-micro/metadata"
 	"log"
-	_ "github.com/micro/go-plugins/wrapper/trace/opentracing"
+	traceplugin "github.com/micro/go-plugins/wrapper/trace/opentracing"
 	"github.com/bertshang/policy/demo-service/trace"
 	"github.com/opentracing/opentracing-go"
 	"os"
@@ -49,7 +49,10 @@ func main()  {
 	opentracing.SetGlobalTracer(t)
 
 	// 注册服务名必须和 demo.proto 中的 package 声明一致
-	service := micro.NewService(micro.Name("policy.demo.service"))
+	service := micro.NewService(
+		micro.Name("policy.service.demo"),
+		micro.WrapHandler(traceplugin.NewHandlerWrapper(opentracing.GlobalTracer())), // 基于 jaeger 采集追踪数据
+	)
 	service.Init()
 
 	pb.RegisterDemoServiceHandler(service.Server(), &DemoServiceHandler{})
