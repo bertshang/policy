@@ -251,7 +251,6 @@ github.com/micro/cli v0.2.0/go.mod h1:jRT9gmfVKWSS6pkKcXQ8YhUyj6bzwxK8Fp5b0Y7qNn
 github.com/micro/go-micro v1.16.0/go.mod h1:A0F58bHLh2m0LAI9QyhvmbN8c1cxhAZo3cM6s+iDsrM=
 github.com/micro/go-micro v1.18.0 h1:gP70EZVHpJuUIT0YWth192JmlIci+qMOEByHm83XE9E=
 github.com/micro/go-micro v1.18.0/go.mod h1:klwUJL1gkdY1MHFyz+fFJXn52dKcty4hoe95Mp571AA=
-github.com/micro/go-plugins v3.0.0+incompatible h1:eJdfLT24kwVbR3XdOIHJl83r7MWt5e57xPqO9ITXXRI=
 github.com/micro/go-plugins/wrapper/trace/opentracing v0.0.0-20200119172437-4fe21aa238fd h1:VzO6kOTcNFVeQRpswPnkza6M8p1zaBkXIryZ6GSQ4TE=
 github.com/micro/go-plugins/wrapper/trace/opentracing v0.0.0-20200119172437-4fe21aa238fd/go.mod h1:fl0TOdLL3BLosPYbeBsvvOa7BAIPe6e7VNyyR4M6+8o=
 github.com/micro/mdns v0.3.0 h1:bYycYe+98AXR3s8Nq5qvt6C573uFTDPIYzJemWON0QE=
@@ -291,8 +290,6 @@ github.com/nbio/st v0.0.0-20140626010706-e9e8d9816f32/go.mod h1:9wM+0iRr9ahx58uY
 github.com/niemeyer/pretty v0.0.0-20200227124842-a10e7caefd8e h1:fD57ERR4JtEqsWbfPhv4DMiApHyliiK5xCTNVSPiaAs=
 github.com/niemeyer/pretty v0.0.0-20200227124842-a10e7caefd8e/go.mod h1:zD1mROLANZcx1PVRCS0qkT7pwLkGfwJo4zjcN/Tysno=
 github.com/nlopes/slack v0.6.0/go.mod h1:JzQ9m3PMAqcpeCam7UaHSuBuupz7CmpjehYMayT6YOk=
-github.com/nonfu/laracom v0.0.0-20200724025147-68c4bc47d79b h1:xbcVor5P4EIUxnwJOqkZXg2IRG21/IHQORn4FYEMfQg=
-github.com/nonfu/laracom/demo-service v0.0.0-20200724025147-68c4bc47d79b h1:7c2ZIwITqkf18S6cS5o1sIwa41hDuGfSR+R8bAyACkY=
 github.com/nrdcg/auroradns v1.0.0/go.mod h1:6JPXKzIRzZzMqtTDgueIhTi6rFf1QvYE/HzqidhOhjw=
 github.com/nrdcg/goinwx v0.6.1/go.mod h1:XPiut7enlbEdntAqalBIqcYcTEVhpv/dKWgDCX2SwKQ=
 github.com/nrdcg/namesilo v0.2.1/go.mod h1:lwMvfQTyYq+BbjJd30ylEG4GPSS6PII0Tia4rRpRiyw=

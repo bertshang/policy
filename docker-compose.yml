@@ -110,7 +110,6 @@ services:
       - microservice
     command: api --handler=http --namespace=policy.api
 
-
   policy-user-db:
     image: mysql:5.7
     container_name: policy-user-db
