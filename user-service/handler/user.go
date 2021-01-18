@@ -206,3 +206,9 @@ func (srv *UserService) DeletePasswordReset(ctx context.Context, req *pb.Passwor
 	res.PasswordReset = nil
 	return nil
 }
+
+func (srv *UserService) GetById(ctx context.Context, req *pb.User, res *pb.Response) error {
+	name := "test" + req.Id
+	res.User = &pb.User{Id: req.Id, Name: name}
+	return nil
+}
