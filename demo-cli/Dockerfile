@@ -26,3 +26,5 @@ WORKDIR /app
 COPY --from=builder /app/policy-demo-cli/policy-demo-cli .
 
 CMD ["./policy-demo-cli"]
+
+EXPOSE 8181

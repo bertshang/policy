@@ -2,28 +2,41 @@ package main
 
 import (
 	"context"
+	"fmt"
+	hystrixgo "github.com/afex/hystrix-go/hystrix"
+	"github.com/bertshang/policy/common/tracer"
+	pb "github.com/bertshang/policy/demo-service/proto/demo"
 	"github.com/micro/go-micro"
 	"github.com/micro/go-micro/metadata"
+	"github.com/micro/go-plugins/wrapper/breaker/hystrix"
 	traceplugin "github.com/micro/go-plugins/wrapper/trace/opentracing"
-	pb "github.com/bertshang/policy/demo-service/proto/demo"
 	"github.com/opentracing/opentracing-go"
 	"log"
+	"net"
+	"net/http"
 	"os"
-	"github.com/bertshang/policy/demo-service/trace"
+	"os/signal"
+	"syscall"
+	"time"
 )
 
 func main() {
 
 	// 初始化追踪器
-	t, io, err := trace.NewTracer("policy.demo.cli", os.Getenv("MICRO_TRACE_SERVER"))
+	t, io, err := tracer.NewTracer("policy.demo.cli", os.Getenv("MICRO_TRACE_SERVER"))
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer io.Close()
 
+	hystrixStreamHandler := hystrixgo.NewStreamHandler()
+	hystrixStreamHandler.Start()
+	go http.ListenAndServe(net.JoinHostPort("", "8181"), hystrixStreamHandler)
+
 	service := micro.NewService(
 		micro.Name("policy.demo.cli"),
 		micro.WrapClient(traceplugin.NewClientWrapper(t)),
+		micro.WrapClient(hystrix.NewClientWrapper()),
 	)
 	service.Init()
 
@@ -51,5 +64,31 @@ func main() {
 		return
 	}
 	span.SetTag("resp", resp)
+
+
+	// 模拟常驻内存
+	c := make(chan os.Signal)
+	signal.Notify(c, os.Interrupt, os.Kill, syscall.SIGQUIT)
+	go func() {
+		for s := range c {
+			switch s {
+			case os.Interrupt, os.Kill, syscall.SIGQUIT:
+				fmt.Println("退出客户端")
+				os.Exit(0)
+			default:
+				fmt.Println("程序执行中...")
+			}
+		}
+	}()
+
+	for {
+		rsp, err := client.SayHello(context.TODO(), &pb.DemoRequest{Name: "bertshang"})
+		if err != nil {
+			log.Fatalf("服务调用失败：%v", err)
+			return
+		}
+		log.Println(rsp.Text)
+		time.Sleep(3 * time.Second)
+	}
 	log.Println(resp.Text)
 }

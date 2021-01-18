@@ -7,7 +7,7 @@ import (
 	"github.com/micro/go-micro/metadata"
 	"log"
 	traceplugin "github.com/micro/go-plugins/wrapper/trace/opentracing"
-	"github.com/bertshang/policy/demo-service/trace"
+	"github.com/bertshang/policy/common/tracer"
 	"github.com/opentracing/opentracing-go"
 	"os"
 )
@@ -41,7 +41,7 @@ func (s *DemoServiceHandler) SayHello(ctx context.Context, req *pb.DemoRequest, 
 
 func main()  {
 	// 初始化全局服务追踪
-	t, io, err := trace.NewTracer("policy.service.demo", os.Getenv("MICRO_TRACE_SERVER"))
+	t, io, err := tracer.NewTracer("policy.service.demo", os.Getenv("MICRO_TRACE_SERVER"))
 	if err != nil {
 		log.Fatal(err)
 	}

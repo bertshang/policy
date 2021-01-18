@@ -1,12 +1,14 @@
 package main
 
 import (
-	"github.com/gin-gonic/gin"
-	"github.com/micro/go-micro/client"
-	"github.com/micro/go-micro/web"
 	"github.com/bertshang/policy/common/tracer"
 	"github.com/bertshang/policy/common/wrapper/tracer/opentracing/gin2micro"
 	pb "github.com/bertshang/policy/demo-service/proto/demo"
+	//"github.com/bertshang/policy/demo-service/trace"
+	//"github.com/bertshang/policy/common/tracer"
+	"github.com/gin-gonic/gin"
+	"github.com/micro/go-micro/client"
+	"github.com/micro/go-micro/web"
 	"github.com/opentracing/opentracing-go"
 	"log"
 	"os"
@@ -21,7 +23,7 @@ var (
 func (s *Say) Anything(c *gin.Context) {
 	log.Print("Received Say.Anything API request")
 	c.JSON(200, map[string]string{
-		"text": "你好，学院君",
+		"text": "hello，bertshang",
 	})
 }
 
@@ -45,7 +47,7 @@ func (s *Say) Hello(c *gin.Context) {
 }
 
 func main() {
-	var name = "laracom.api.demo"
+	var name = "policy.api.demo"
 	// 初始化追踪器
 	gin2micro.SetSamplingFrequency(50)
 	t, io, err := tracer.NewTracer(name, os.Getenv("MICRO_TRACE_SERVER"))
@@ -63,7 +65,7 @@ func main() {
 	service.Init()
 
 	// setup Demo Server Client
-	cli = pb.NewDemoServiceClient("laracom.service.demo", client.DefaultClient)
+	cli = pb.NewDemoServiceClient("policy.service.demo", client.DefaultClient)
 
 	// Create RESTful handler (using Gin)
 	say := new(Say)
