@@ -47,8 +47,8 @@ github.com/beorn7/perks v0.0.0-20180321164747-3a771d992973/go.mod h1:Dwedo/Wpr24
 github.com/beorn7/perks v1.0.0/go.mod h1:KWe93zE9D1o94FZ5RNwFwVgaQK1VOXiVxmqh+CedLV8=
 github.com/beorn7/perks v1.0.1 h1:VlbKKnNfV8bJzeqoa4cOKqO6bYr3WgKZxO8Z16+hsOM=
 github.com/beorn7/perks v1.0.1/go.mod h1:G2ZrVWU2WbWT9wwq4/hrbKbnv/1ERSJQ0ibhJ6rlkpw=
-github.com/bertshang/policy/common v0.0.0-20210112062123-6f5bd02d9bef h1:2cQZxKoAjvIswNQCViVUFSsB2uS5Wk4G3Jci5tVB/PI=
-github.com/bertshang/policy/common v0.0.0-20210112062123-6f5bd02d9bef/go.mod h1:xODjlVMx8iGhdkUSDlQXcNf1dMSWkYnWstYx3qYQMRM=
+github.com/bertshang/policy/common v0.0.0-20210118051236-f692f87b6ab7 h1:1RivB2U2N2gKy1Yo+hNsLPXVoejjjI7GHcIu8zgJbE0=
+github.com/bertshang/policy/common v0.0.0-20210118051236-f692f87b6ab7/go.mod h1:f1U0IXu4oTZkqxodu4TnRF9YjJX9nPpd4HSmblPFl0M=
 github.com/bertshang/policy/demo-service v0.0.0-20210111084732-c3ee1b924881 h1:M36o31B0VZQnGX5pdvY4n4VM5v9AgkifHjX55zBnYaA=
 github.com/bertshang/policy/demo-service v0.0.0-20210111084732-c3ee1b924881/go.mod h1:mjT+eRxdofOcibZG6xn1cc/oM2mxkJAtYtlX9h77ay8=
 github.com/bitly/go-simplejson v0.5.0/go.mod h1:cXHtHw4XUPsvGaxgjIAn8PhEWG9NfngEKAMDJEczWVA=
@@ -271,8 +271,6 @@ github.com/micro/cli v0.2.0/go.mod h1:jRT9gmfVKWSS6pkKcXQ8YhUyj6bzwxK8Fp5b0Y7qNn
 github.com/micro/go-micro v1.16.0/go.mod h1:A0F58bHLh2m0LAI9QyhvmbN8c1cxhAZo3cM6s+iDsrM=
 github.com/micro/go-micro v1.18.0 h1:gP70EZVHpJuUIT0YWth192JmlIci+qMOEByHm83XE9E=
 github.com/micro/go-micro v1.18.0/go.mod h1:klwUJL1gkdY1MHFyz+fFJXn52dKcty4hoe95Mp571AA=
-github.com/micro/go-plugins/wrapper/breaker/hystrix v0.0.0-20200119172437-4fe21aa238fd h1:Eb069S90V831jW0mEyzul5D7RwyLSbY/EgrwLRfC6E8=
-github.com/micro/go-plugins/wrapper/breaker/hystrix v0.0.0-20200119172437-4fe21aa238fd/go.mod h1:csTzCS+fhYRYcAOF9NQEn6NxafX0aDLZA6VeCCQLrnI=
 github.com/micro/go-plugins/wrapper/trace/opentracing v0.0.0-20200119172437-4fe21aa238fd h1:VzO6kOTcNFVeQRpswPnkza6M8p1zaBkXIryZ6GSQ4TE=
 github.com/micro/go-plugins/wrapper/trace/opentracing v0.0.0-20200119172437-4fe21aa238fd/go.mod h1:fl0TOdLL3BLosPYbeBsvvOa7BAIPe6e7VNyyR4M6+8o=
 github.com/micro/mdns v0.3.0 h1:bYycYe+98AXR3s8Nq5qvt6C573uFTDPIYzJemWON0QE=

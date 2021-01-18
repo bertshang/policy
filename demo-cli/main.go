@@ -3,17 +3,14 @@ package main
 import (
 	"context"
 	"fmt"
-	hystrixgo "github.com/afex/hystrix-go/hystrix"
 	"github.com/bertshang/policy/common/tracer"
 	pb "github.com/bertshang/policy/demo-service/proto/demo"
 	"github.com/micro/go-micro"
 	"github.com/micro/go-micro/metadata"
-	"github.com/micro/go-plugins/wrapper/breaker/hystrix"
+	"github.com/bertshang/policy/common/wrapper/breaker/hystrix"
 	traceplugin "github.com/micro/go-plugins/wrapper/trace/opentracing"
 	"github.com/opentracing/opentracing-go"
 	"log"
-	"net"
-	"net/http"
 	"os"
 	"os/signal"
 	"syscall"
@@ -21,7 +18,7 @@ import (
 )
 
 func main() {
-
+	hystrix.Configure([]string{"policy.service.demo.DemoService.SayHello"})
 	// 初始化追踪器
 	t, io, err := tracer.NewTracer("policy.demo.cli", os.Getenv("MICRO_TRACE_SERVER"))
 	if err != nil {
@@ -29,9 +26,7 @@ func main() {
 	}
 	defer io.Close()
 
-	hystrixStreamHandler := hystrixgo.NewStreamHandler()
-	hystrixStreamHandler.Start()
-	go http.ListenAndServe(net.JoinHostPort("", "8181"), hystrixStreamHandler)
+
 
 	service := micro.NewService(
 		micro.Name("policy.demo.cli"),
